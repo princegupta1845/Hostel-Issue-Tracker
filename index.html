@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HostelTrack | Dashboard</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="dashboard">
+<header class="topbar">
+  <a class="brand" href="index.html"><span class="brand-mark">HT</span><span>HostelTrack</span></a>
+  <nav>
+    <a class="active" href="index.html">Dashboard</a>
+    <a href="report.html">Report Issue</a>
+    <a href="issues.html">All Issues</a>
+    <a href="my-issues.html">My Issues</a>
+  </nav>
+  <form class="nav-search" onsubmit="globalSearch(event)">
+    <input id="globalSearch" type="search" placeholder="Search issues...">
+    <button type="submit">Search</button>
+  </form>
+</header>
+
+<main class="container">
+  <section class="hero">
+    <div>
+      <p class="eyebrow">HOSTEL MAINTENANCE</p>
+      <h1>Keep hostel problems moving toward resolution.</h1>
+      <p class="hero-text">Report a problem, track its progress, and keep a clear record of maintenance work.</p>
+      <a class="btn primary" href="report.html">Report an Issue</a>
+    </div>
+    <div class="hero-card">
+      <span class="hero-icon">✓</span>
+      <strong>Simple issue tracking</strong>
+      <p>From first report to final resolution.</p>
+    </div>
+  </section>
+
+  <section class="stats" id="stats"></section>
+
+  <section class="section-head">
+    <div>
+      <p class="eyebrow">RECENT ACTIVITY</p>
+      <h2>Recently reported issues</h2>
+    </div>
+    <a href="issues.html">View all →</a>
+  </section>
+  <section id="recentIssues" class="issue-grid"></section>
+</main>
+
+<footer>HostelTrack • Mini Project</footer>
+<script src="js/data.js"></script>
+<script src="js/script.js"></script>
+</body>
+</html>

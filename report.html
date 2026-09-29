@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HostelTrack | Report Issue</title><link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="report">
+<header class="topbar">
+<a class="brand" href="index.html"><span class="brand-mark">HT</span><span>HostelTrack</span></a>
+<nav><a href="index.html">Dashboard</a><a class="active" href="report.html">Report Issue</a><a href="issues.html">All Issues</a><a href="my-issues.html">My Issues</a></nav>
+<form class="nav-search" onsubmit="globalSearch(event)"><input id="globalSearch" type="search" placeholder="Search issues..."><button>Search</button></form>
+</header>
+<main class="container narrow">
+<div class="page-title"><p class="eyebrow">NEW REPORT</p><h1>Report a hostel issue</h1><p>Provide the basic details so the problem can be reviewed and tracked.</p></div>
+<form id="issueForm" class="form-card">
+<div class="form-grid">
+<label>Issue title<input name="title" required placeholder="e.g. Broken ceiling fan"></label>
+<label>Category<select name="category" required><option value="">Select category</option><option>Electrical</option><option>Plumbing</option><option>Cleaning</option><option>Furniture</option><option>Internet/Wi-Fi</option><option>Other</option></select></label>
+<label>Hostel / Block<input name="hostel" required placeholder="e.g. Block B"></label>
+<label>Room number<input name="room" required placeholder="e.g. B-204"></label>
+<label>Priority<select name="priority" required><option>Low</option><option selected>Medium</option><option>High</option></select></label>
+<label>Date<input name="date" id="issueDate" type="date" required></label>
+<label class="full">Description<textarea name="description" required rows="5" placeholder="Describe the issue clearly..."></textarea></label>
+</div>
+<div class="form-actions"><a class="btn secondary" href="index.html">Cancel</a><button class="btn primary" type="submit">Submit Issue</button></div>
+</form>
+</main>
+<footer>HostelTrack • Mini Project</footer>
+<script src="js/data.js"></script><script src="js/script.js"></script>
+</body></html>

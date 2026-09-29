@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HostelTrack | All Issues</title><link rel="stylesheet" href="css/style.css"></head>
+<body data-page="issues">
+<header class="topbar"><a class="brand" href="index.html"><span class="brand-mark">HT</span><span>HostelTrack</span></a>
+<nav><a href="index.html">Dashboard</a><a href="report.html">Report Issue</a><a class="active" href="issues.html">All Issues</a><a href="my-issues.html">My Issues</a></nav>
+<form class="nav-search" onsubmit="globalSearch(event)"><input id="globalSearch" type="search" placeholder="Search issues..."><button>Search</button></form></header>
+<main class="container">
+<div class="page-title"><p class="eyebrow">ISSUE DIRECTORY</p><h1>All hostel issues</h1><p>Search, filter and inspect reported maintenance problems.</p></div>
+<section class="filter-bar">
+<input id="issueSearch" type="search" placeholder="Search title, room or description...">
+<select id="categoryFilter"><option value="">All categories</option><option>Electrical</option><option>Plumbing</option><option>Cleaning</option><option>Furniture</option><option>Internet/Wi-Fi</option><option>Other</option></select>
+<select id="statusFilter"><option value="">All statuses</option><option>Reported</option><option>Reviewed</option><option>In Progress</option><option>Resolved</option></select>
+<select id="priorityFilter"><option value="">All priorities</option><option>Low</option><option>Medium</option><option>High</option></select>
+<select id="sortFilter"><option value="newest">Newest first</option><option value="oldest">Oldest first</option></select>
+</section>
+<section id="issueList" class="issue-grid"></section>
+</main>
+<footer>HostelTrack • Mini Project</footer>
+<script src="js/data.js"></script><script src="js/script.js"></script></body></html>
