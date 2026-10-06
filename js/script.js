@@ -1,5 +1,6 @@
 const statuses=["Reported","Reviewed","In Progress","Resolved"];
 
+
 document.addEventListener("DOMContentLoaded",()=>{
  loadIssues();
  const page=document.body.dataset.page;
@@ -10,13 +11,25 @@ document.addEventListener("DOMContentLoaded",()=>{
  if(page==="mine") initMine();
 });
 
-function issues(){return loadIssues();}
-function moneyDate(d){return new Date(d+"T00:00:00").toLocaleDateString("en-IN",{day:"2-digit",month:"short",year:"numeric"});}
-function esc(s){return String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));}
-function badgeClass(v){return v.toLowerCase().replace(/[^a-z]+/g,"-");}
+function issues()
+{
+  return loadIssues();
+}
+function moneyDate(d)
+{
+  return new Date(d+"T00:00:00").toLocaleDateString("en-IN",{day:"2-digit",month:"short",year:"numeric"});
+}
+function esc(s){
+  return String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));
+}
+function badgeClass(v){
+  return v.toLowerCase().replace(/[^a-z]+/g,"-");
+}
 function issueCard(x){
- return `<article class="issue-card">
-   <div class="card-top"><span class="issue-id">${x.id}</span><span class="badge ${badgeClass(x.priority)}">${esc(x.priority)}</span></div>
+ 
+  return `<article class="issue-card">
+   
+  <div class="card-top"><span class="issue-id">${x.id}</span><span class="badge ${badgeClass(x.priority)}">${esc(x.priority)}</span></div>
    <h3>${esc(x.title)}</h3>
    <p class="muted">${esc(x.category)} • ${esc(x.hostel)} • Room ${esc(x.room)}</p>
    <p class="desc">${esc(x.description)}</p>
@@ -36,9 +49,16 @@ function initDashboard(){
 function initReport(){
  document.getElementById("issueDate").value=new Date().toISOString().slice(0,10);
  document.getElementById("issueForm").addEventListener("submit",e=>{
-  e.preventDefault(); const fd=new FormData(e.target); const all=issues();
-  const num=1001+all.length; const x={id:"ISS-"+num,title:fd.get("title"),category:fd.get("category"),hostel:fd.get("hostel"),room:fd.get("room"),priority:fd.get("priority"),date:fd.get("date"),description:fd.get("description"),status:"Reported",mine:true,resolution:""};
-  all.unshift(x); saveIssues(all); alert(`Issue ${x.id} has been reported successfully.`); location.href="issue.html?id="+x.id;
+  e.preventDefault(); const fd=new FormData(e.target);
+   const all=issues();
+  const num=1001+all.length; 
+  const x={id:"ISS-"+num,title:fd.get("title"),category:fd.get("category"),hostel:fd.get("hostel"),room:fd.get("room"),priority:fd.get("priority"),date:fd.get("date"),description:fd.get("description"),status:"Reported",mine:true,resolution:""};
+ 
+  all.unshift(x); saveIssues(all); 
+  
+  alert(`Issue ${x.id} has been reported successfully.`);
+ 
+  location.href="issue.html?id="+x.id;
  });
 }
 function initIssues(){
@@ -55,23 +75,52 @@ function renderIssues(){
 function initDetail(){
  const id=new URLSearchParams(location.search).get("id"), x=issues().find(i=>i.id===id);
  const el=document.getElementById("issueDetail");
- if(!x){el.innerHTML=`<div class="empty"><h2>Issue not found</h2><a class="btn primary" href="issues.html">Back to issues</a></div>`;return;}
+ if(!x){
+  el.innerHTML=`<div class="empty"><h2>Issue not found</h2><a class="btn primary" href="issues.html">Back to issues</a></div>`;
+  return;
+}
  el.innerHTML=`<a class="back" href="issues.html">← Back to issues</a>
  <section class="detail-card">
-  <div class="detail-head"><div><span class="issue-id">${x.id}</span><h1>${esc(x.title)}</h1></div><span class="badge ${badgeClass(x.priority)}">${esc(x.priority)} priority</span></div>
-  <div class="detail-meta"><div><small>Category</small><strong>${esc(x.category)}</strong></div><div><small>Location</small><strong>${esc(x.hostel)} • ${esc(x.room)}</strong></div><div><small>Reported</small><strong>${moneyDate(x.date)}</strong></div></div>
+ 
+ <div class="detail-head"><div><span class="issue-id">${x.id}</span><h1>${esc(x.title)}</h1></div><span class="badge ${badgeClass(x.priority)}">${esc(x.priority)} priority</span></div>
+  
+  <div class="detail-meta"><div><small>Category</small><strong>${esc(x.category)}</strong></
+  
+  div><div><small>Location</small><strong>${esc(x.hostel)} • ${esc(x.room)}</strong></
+  
+  div><div><small>Reported</small><strong>${moneyDate(x.date)}</strong></div></div>
+  
   <div class="description-box"><small>Description</small><p>${esc(x.description)}</p></div>
+  
   <h2>Issue timeline</h2>
-  <div class="timeline">${statuses.map((s,i)=>{const cur=statuses.indexOf(x.status);return `<div class="timeline-item ${i<=cur?"done":""} ${i===cur?"current":""}"><span>${i<cur?"✓":i===cur?"●":"○"}</span><div><strong>${s}</strong><small>${i===0?moneyDate(x.date):i<=cur?"Status updated":"Waiting for update"}</small></div></div>`}).join("")}</div>
+ 
+  <div class="timeline">${statuses.map((s,i)=>{const cur=statuses.indexOf(x.status);return `<div class="timeline-item ${i<=cur?"done":""} ${i===cur?"current":""}"><span>${i<cur?"✓":i===cur?"●":"○"}</span><div><strong>${s}</strong><small>${i===0?moneyDate(x.date):i<=cur?"Status updated":"Waiting for update"}</small></div></div>`}).join("")}
+  </div>
+ 
   ${x.status==="Resolved"&&x.resolution?`<div class="resolution"><strong>Resolution note</strong><p>${esc(x.resolution)}</p></div>`:""}
+  
   <div class="admin-actions"><button class="btn secondary" onclick="advanceStatus('${x.id}')">${x.status==="Resolved"?"Issue Resolved":"Update Status"}</button><button class="btn danger" onclick="deleteIssue('${x.id}')">Delete</button></div>
  </section>`;
 }
 function advanceStatus(id){
  const all=issues(),x=all.find(i=>i.id===id),idx=statuses.indexOf(x.status);
- if(idx<statuses.length-1){x.status=statuses[idx+1];if(x.status==="Resolved")x.resolution="Maintenance team marked this issue as resolved.";saveIssues(all);initDetail();}
+
+ if(idx<statuses.length-1){
+  x.status=statuses[idx+1];
+  if(x.status==="Resolved")x.resolution="Maintenance team marked this issue as resolved.";saveIssues(all);initDetail();
+}
  else alert("This issue is already resolved.");
 }
-function deleteIssue(id){if(confirm("Delete this issue?")){saveIssues(issues().filter(x=>x.id!==id));location.href="issues.html";}}
-function initMine(){document.getElementById("myIssues").innerHTML=issues().filter(x=>x.mine).map(issueCard).join("")||`<div class="empty"><strong>No reports yet</strong><p>Report an issue to see it here.</p></div>`;}
-function globalSearch(e){e.preventDefault();const q=document.getElementById("globalSearch").value.trim();if(q)location.href="issues.html?search="+encodeURIComponent(q);else location.href="issues.html";}
+
+function deleteIssue(id){
+  if(confirm("Delete this issue?")){saveIssues(issues().filter(x=>x.id!==id));
+    location.href="issues.html";}
+}
+
+function initMine(){
+  document.getElementById("myIssues").innerHTML=issues().filter(x=>x.mine).map(issueCard).join("")||`<div class="empty"><strong>No reports yet</strong><p>Report an issue to see it here.</p></div>`;
+}
+
+function globalSearch(e){
+  e.preventDefault();const q=document.getElementById("globalSearch").value.trim();if(q)location.href="issues.html?search="+encodeURIComponent(q);else location.href="issues.html";
+}

@@ -1,14 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HostelTrack | My Issues</title><link rel="stylesheet" href="css/style.css"></head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HostelTrack | My Issues</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
 <body data-page="mine">
-<header class="topbar"><a class="brand" href="index.html"><span class="brand-mark">HT</span><span>HostelTrack</span></a>
-<nav><a href="index.html">Dashboard</a><a href="report.html">Report Issue</a><a href="issues.html">All Issues</a><a class="active" href="my-issues.html">My Issues</a></nav>
-<form class="nav-search" onsubmit="globalSearch(event)"><input id="globalSearch" type="search" placeholder="Search issues..."><button>Search</button></form></header>
-<main class="container">
-<div class="page-title"><p class="eyebrow">MY REPORTS</p><h1>My reported issues</h1><p>Track the issues you have submitted.</p></div>
-<section id="myIssues" class="issue-grid"></section>
-</main>
+     <header class="topbar">
+        <a class="brand" href="index.html">
+            <span class="brand-mark">HT</span>
+            <span>HostelTrack</span>
+        </a>
+      <nav>
+        <a href="index.html">Dashboard</a>
+        <a href="report.html">Report Issue</a>
+        <a href="issues.html">All Issues</a>
+        <a class="active" href="my-issues.html">My Issues</a>
+    </nav>
+   <form class="nav-search" onsubmit="globalSearch(event)">
+    <input id="globalSearch" type="search" placeholder="Search issues...">
+    <button>Search</button>
+   </form>
+</header>
+   <main class="container">
+     <div class="page-title">
+        <p class="eyebrow">MY REPORTS</p>
+        <h1>My reported issues</h1>
+        <p>Track the issues you have submitted.</p>
+    </div>
+     <section id="myIssues" class="issue-grid"></section>
+   </main>
 <footer>HostelTrack • Mini Project</footer>
 <script src="js/data.js"></script><script src="js/script.js"></script></body></html>
